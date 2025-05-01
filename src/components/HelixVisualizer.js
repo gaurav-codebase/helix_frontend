@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Line } from '@react-three/drei';
-import axios from 'axios';
 import HelixControls from './HelixControls';
 
 const HelixVisualizer = () => {
@@ -16,8 +15,20 @@ const HelixVisualizer = () => {
 
   const fetchHelixData = async (newParams) => {
     try {
-      const response = await axios.post('http://localhost:8000/api/helix/', newParams);
-      setHelixData(response.data);
+      const response = await fetch('https://helix-worker.growthvector.workers.dev', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newParams),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      
+      const data = await response.json();
+      setHelixData(data);
     } catch (error) {
       console.error('Error fetching helix data:', error);
     }
