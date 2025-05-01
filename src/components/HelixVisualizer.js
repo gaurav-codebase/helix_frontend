@@ -15,7 +15,7 @@ const HelixVisualizer = () => {
 
   const fetchHelixData = async (newParams) => {
     try {
-      const response = await fetch('https://helix-worker.growthvector.workers.dev', {
+      const response = await fetch('http://localhost:8787', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
