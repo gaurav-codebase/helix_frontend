@@ -1,0 +1,4 @@
+name = "helix-frontend"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+account_id = "6d3fd2afd34af51f63222a1e31d95b66"
